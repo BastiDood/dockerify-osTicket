@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - '80:80'
+    volumes:
+      - apache:/var/www/html
+  db:
+    image: mysql:8.0.33-debian
+    restart: always
+    volumes:
+      - mysql:/var/lib/mysql
+volumes:
+  apache:
+    name: www
+  mysql:
+    name: osticket
