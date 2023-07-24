@@ -17,6 +17,5 @@ RUN apt-get update \
 
 # Feel free to change the cloned osTicket version here.
 RUN git clone --depth 1 --branch v1.18 https://github.com/osTicket/osTicket.git /ost \
-    && /ost/manage.php deploy -g --setup /var/www/html/; \
-    if [[ $(mv -vn /var/www/html/include/ost-sampleconfig.php /var/www/html/include/ost-config.php) ]]; \
-    then chmod 0666 /var/www/html/include/ost-config.php; fi
+    && /ost/manage.php deploy -g --setup /var/www/html/ \
+    && mv -vn /var/www/html/include/ost-sampleconfig.php /var/www/html/include/ost-config.php

@@ -14,6 +14,10 @@ services:
     restart: always
     volumes:
       - mysql:/var/lib/mysql
+    env_file: mysql.env
+    environment:
+      MYSQL_DATABASE: osticket
+      MYSQL_USER: user
 volumes:
   apache:
     name: www
