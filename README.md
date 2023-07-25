@@ -5,6 +5,21 @@ This repository contains various automation scripts for managing [osTicket] in a
 [Docker]: https://www.docker.com/
 [osTicket]: https://osticket.com/
 
+## Git Submodules
+
+The project uses [Git Submodules] to pull the latest version of [osTicket]. Alternatively, one may pin the submodule to a specific tag/release/commit.
+
+[Git Submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
+
+```bash
+# Clone this repository while recursing on the submodules.
+git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/BastiDood/dockerify-osTicket.git
+
+# Get all the tags from the remote for each submodule.
+# In our case, osTicket is the only submodule.
+git submodule foreach 'git fetch --tags'
+```
+
 ## Environment Variables
 
 See the [different ways][inject-env] to inject environment variables into the Docker build. Note that the [`docker-compose.yml`](./docker-compose.yml) file has been configured to accept a `mysql.env` file in the repository root.
@@ -26,8 +41,8 @@ Note that the Docker container for MySQL supports [more environment variables][d
 ## Docker Compose
 
 ```bash
-# Set up the PHP and MySQL containers.
-docker compose up
+# Start the PHP and MySQL containers in the background.
+docker compose up -d
 
 # If this is the first setup, make sure to make the configuration file
 # writable by the setup wizard at http://localhost/setup/install.php.
