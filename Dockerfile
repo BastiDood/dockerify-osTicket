@@ -15,7 +15,8 @@ RUN apt-get update \
     && docker-php-ext-enable gd mysqli imap apcu opcache zip \
     && mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
-# Feel free to change the cloned osTicket version here.
-RUN git clone --depth 1 --branch v1.18 https://github.com/osTicket/osTicket.git /ost \
-    && /ost/manage.php deploy -g --setup /var/www/html/ \
+COPY . /web
+
+RUN /web/osTicket/manage.php deploy -g --setup /var/www/html/ \
+    && rm -rf /web \
     && cp -vn /var/www/html/include/ost-sampleconfig.php /var/www/html/include/ost-config.php
