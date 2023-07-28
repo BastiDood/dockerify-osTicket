@@ -44,6 +44,12 @@ Note that the Docker container for MySQL supports [more environment variables][d
 # Start the PHP and MySQL containers in the background.
 docker compose up -d
 
+# Run the setup command into `/var/www/html`.
+docker compose exec web /web/osTicket/manage.php deploy -g --setup /var/www/html/
+
+# Rename `ost-sampleconfig.php` => `ost-config.php`.
+docker compose exec cp -vn /var/www/html/include/ost-sampleconfig.php /var/www/html/include/ost-config.php
+
 # If this is the first setup, make sure to make the configuration file
 # writable by the setup wizard at http://localhost/setup/install.php.
 docker compose exec web chmod 0666 /var/www/html/include/ost-config.php

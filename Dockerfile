@@ -16,7 +16,3 @@ RUN apt-get update \
     && mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY . /web
-
-RUN /web/osTicket/manage.php deploy -g --setup /var/www/html/ \
-    && rm -rf /web \
-    && cp -vn /var/www/html/include/ost-sampleconfig.php /var/www/html/include/ost-config.php
