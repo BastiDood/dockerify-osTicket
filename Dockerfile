@@ -2,7 +2,9 @@ FROM php:8.2.8-apache-bookworm
 
 # Install all dependencies required to build, install, and enable
 # PHP extensions: gd, mysqli, imap, apcu, opcache, and zip.
-RUN apt-get update \
+RUN a2enmod rewrite \
+    && service apache2 restart \
+    && apt-get update \
     && apt-get install -y \
         git \
         zlib1g-dev libpng-dev libjpeg-dev \
