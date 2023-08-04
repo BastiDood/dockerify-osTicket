@@ -48,7 +48,7 @@ docker compose up -d
 docker compose exec --workdir /web/osTicket web ./manage.php deploy -g --setup /var/www/html/
 
 # Rename `ost-sampleconfig.php` => `ost-config.php`.
-docker compose exec cp -vn /var/www/html/include/ost-sampleconfig.php /var/www/html/include/ost-config.php
+docker compose exec web cp -vn /var/www/html/include/ost-sampleconfig.php /var/www/html/include/ost-config.php
 
 # If this is the first setup, make sure to make the configuration file
 # writable by the setup wizard at http://localhost/setup/install.php.
